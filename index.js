@@ -6,10 +6,16 @@ const { Server } = require("socket.io");
 const io = new Server(server);
 const { instrument } = require("@socket.io/admin-ui");
 const TTS = require('./tts');
+const cors = require('cors');
 
 
 let tts = new TTS();
 tts.initialize();
+
+
+app.use(cors({
+  origin: '*'
+}));
 
 
 app.all("/", function (req, res, next) {
